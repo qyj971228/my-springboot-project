@@ -11,12 +11,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 @RestControllerAdvice(basePackages = {"com.qyj.hello.controller"})
 public class ResponseControllerAdvice implements ResponseBodyAdvice<Object> {
 
-  @Override
   public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> aClass) {
     return !returnType.getGenericParameterType().equals(Result.class);
   }
 
-  @Override
   public Object beforeBodyWrite(Object data, MethodParameter returnType, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
     return new Result<>(data);
   }

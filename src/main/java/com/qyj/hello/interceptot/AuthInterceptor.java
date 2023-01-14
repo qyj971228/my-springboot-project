@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class AuthInterceptor implements HandlerInterceptor {
 
-  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+  public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws AuthException {
     String auth = request.getHeader("Auth");
     if (auth == null) {
       throw new AuthException();
